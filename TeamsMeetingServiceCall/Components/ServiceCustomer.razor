@@ -1,0 +1,87 @@
+﻿@*@using Microsoft.Extensions.Configuration
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Hosting
+@inject TeamsFx teamsfx
+@inject TeamsUserCredential teamsUserCredential
+@inject MicrosoftTeams MicrosoftTeams
+@inject IWebHostEnvironment HostEnvironment
+@inject IConfiguration Configuration
+@inject NavigationManager MyNavigationManager*@
+
+
+<div class="welcome page">
+  <div class="narrow page-padding">
+    <img src="hello.png" />
+    <h1 class="center">Customer Info</h1>
+    <div class="gridTable">
+      <div class="gridRow">
+        <div class="gridCell3">
+          <label>Name</label>
+        </div>      
+        <div class="gridCell9">
+          <label id="customerName" class="infoData"></label>
+        </div>
+      </div>
+      <div class="gridRow">
+        <div class="gridCell3">
+          <label>Phone</label>
+        </div>
+        <div class="gridCell9">
+          <label id="customerPhone" class="infoData"></label>
+        </div>
+      </div>
+      <div class="gridRow">
+        <div class="gridCell3">
+          <label>Email</label>
+        </div>
+        <div class="gridCell9">
+          <label id="customerEmail" class="infoData"></label>
+        </div>
+      </div>
+      <div class="gridRow">
+        <div class="gridCell3">
+          <label>ID</label>
+        </div>
+        <div class="gridCell9">
+          <label id="customerID" class="infoData"></label>
+        </div>
+      </div>
+    </div>
+           
+  </div>
+</div>
+
+@*@code {
+    string userName;
+    string errorMessage;
+    bool isInTeams;
+    bool isLoading = true; 
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if(firstRender)
+        {
+            isInTeams = await MicrosoftTeams.IsInTeams();
+
+            if (isInTeams)
+            { 
+               var user = await teamsUserCredential.GetUserInfoAsync();
+               userName = user.DisplayName;
+            }
+            else
+            {
+                errorMessage = "Not running in Microsoft Teams.";
+            }
+
+            StateHasChanged();            
+        }
+    }
+
+    private string GetEnvironmentName()
+    {
+        return HostEnvironment.IsDevelopment() ? "local environment" : "Azure environment";
+    }
+}*@
+

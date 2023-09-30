@@ -1,0 +1,43 @@
+{
+    "solution": {
+        "provisionSucceeded": true,
+        "teamsAppTenantId": "7e77d071-ed08-468a-bc75-e8254ba77a21",
+        "subscriptionId": "59ba8c07-5e8d-4b7f-8169-c9c081cd91cf",
+        "subscriptionName": "Visual Studio Enterprise Subscription",
+        "tenantId": "7e77d071-ed08-468a-bc75-e8254ba77a21",
+        "needCreateResourceGroup": false,
+        "resourceGroupName": "DefaultMMO",
+        "location": "westeurope",
+        "resourceNameSuffix": "06cea6"
+    },
+    "fx-resource-appstudio": {
+        "tenantId": "7e77d071-ed08-468a-bc75-e8254ba77a21",
+        "teamsAppId": "ec1c4b5c-a3ce-4e36-a84a-d3f72136d245"
+    },
+    "fx-resource-frontend-hosting": {
+        "indexPath": "/",
+        "skuName": "F1",
+        "siteName": "teamsmeetib67199tab",
+        "domain": "teamsmeetib67199tab.azurewebsites.net",
+        "appServicePlanName": "teamsmeetib67199tab",
+        "resourceId": "/subscriptions/59ba8c07-5e8d-4b7f-8169-c9c081cd91cf/resourceGroups/DefaultMMO/providers/Microsoft.Web/sites/teamsmeetib67199tab",
+        "siteEndpoint": "https://teamsmeetib67199tab.azurewebsites.net",
+        "endpoint": "https://teamsmeetib67199tab.azurewebsites.net"
+    },
+    "fx-resource-aad-app-for-teams": {
+        "clientId": "24a526bc-aee8-4369-ae03-7a7a32775d64",
+        "clientSecret": "{{fx-resource-aad-app-for-teams.clientSecret}}",
+        "objectId": "dbb7066f-0a7d-4029-83ac-b017af8fbd9a",
+        "oauth2PermissionScopeId": "950559f7-bf26-49c6-9e9c-87855bde7978",
+        "tenantId": "7e77d071-ed08-468a-bc75-e8254ba77a21",
+        "oauthHost": "https://login.microsoftonline.com",
+        "oauthAuthority": "https://login.microsoftonline.com/7e77d071-ed08-468a-bc75-e8254ba77a21",
+        "applicationIdUris": "api://teamsmeetib67199tab.azurewebsites.net/24a526bc-aee8-4369-ae03-7a7a32775d64",
+        "frontendEndpoint": "https://teamsmeetib67199tab.azurewebsites.net"
+    },
+    "fx-resource-identity": {
+        "identityName": "teamsmeetib67199",
+        "identityResourceId": "/subscriptions/59ba8c07-5e8d-4b7f-8169-c9c081cd91cf/resourceGroups/DefaultMMO/providers/Microsoft.ManagedIdentity/userAssignedIdentities/teamsmeetib67199",
+        "identityClientId": "1ab84ae7-f057-4ba3-95ea-e0683a750063"
+    }
+}
