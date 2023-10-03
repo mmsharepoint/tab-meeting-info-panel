@@ -118,9 +118,9 @@ namespace TeamsMeetingCreationPoC.controller
                 Configuration = new TeamsTabConfiguration
                 {
                     EntityId = "2DCA2E6C7A10415CAF6B8AB6661B3154", // ToDo
-                    ContentUrl = "https://teamsmeetib67199tab.azurewebsites.net/tab",
-                    RemoveUrl = "https://teamsmeetib67199tab.azurewebsites.net/uninstallTab",
-                    WebsiteUrl = "https://teamsmeetib67199tab.azurewebsites.net"
+                    ContentUrl = "https://mmotabmeetingcreatedata.azurewebsites.net/tab",
+                    RemoveUrl = "https://mmotabmeetingcreatedata.azurewebsites.net/uninstallTab",
+                    WebsiteUrl = "https://mmotabmeetingcreatedata.azurewebsites.net"
                 },
                 AdditionalData = new Dictionary<string, object>
         {

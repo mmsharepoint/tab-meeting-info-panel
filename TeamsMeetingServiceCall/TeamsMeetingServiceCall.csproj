@@ -25,10 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Data.Tables" Version="12.8.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.20" />
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureAppConfiguration" Version="6.0.1" />
     <PackageReference Include="Microsoft.Graph" Version="4.54.0" />
-    <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="1.5.3" />
+    <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="3.1.1" />
     <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="1.26.0" />
     <PackageReference Include="Microsoft.TeamsFx" Version="1.2.*" />
   </ItemGroup>

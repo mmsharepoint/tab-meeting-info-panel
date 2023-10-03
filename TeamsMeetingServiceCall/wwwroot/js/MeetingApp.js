@@ -37,7 +37,7 @@
   }
 
   MeetingApp.getCustomerData = function () {
-    const requestUrl = "/api/Graph?meetingId=" + MeetingApp.meetingId;
+    const requestUrl = "/api/Customer?meetingId=" + MeetingApp.meetingId;
     
 
     fetch(requestUrl, {

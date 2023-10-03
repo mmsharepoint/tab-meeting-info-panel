@@ -3,11 +3,13 @@
 @using Microsoft.Extensions.Hosting
 @inject TeamsFx teamsfx
 @inject TeamsUserCredential teamsUserCredential
-@inject MicrosoftTeams MicrosoftTeams
 @inject IWebHostEnvironment HostEnvironment
 @inject IConfiguration Configuration
 @inject NavigationManager MyNavigationManager*@
-
+@using TeamsMeetingServiceCall.Controllers;
+@using TeamsMeetingServiceCall.Models;
+@using System.Text;
+@inject MicrosoftTeams MicrosoftTeams
 
 <div class="welcome page">
   <div class="narrow page-padding">
@@ -51,6 +53,32 @@
   </div>
 </div>
 
+@code {
+    string customerName;
+    string customerEmail;
+    bool isInTeams;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        // if (firstRender)
+        // {
+        //     isInTeams = await MicrosoftTeams.IsInTeams();
+        // }
+        // if (isInTeams)
+        // {
+        //     await MicrosoftTeams.InitializeAsync();
+        //     var context = await MicrosoftTeams.GetTeamsContextAsync();
+        //     string encodedMeetingID = context.MeetingId;
+        //     byte[] decodedBytes = Convert.FromBase64String(encodedMeetingID);
+        //     string meetingID = Encoding.UTF8.GetString(decodedBytes).Replace("0#", "").Replace("#0", "");
+        //     AzureTableController azureTableController = new AzureTableController();
+        //     CustomerData customer = azureTableController.GetCustomer(meetingID);
+        //     customerName = customer.Name;
+        //     customerEmail = customerEmail;
+        // }
+    }
+}
 @*@code {
     string userName;
     string errorMessage;

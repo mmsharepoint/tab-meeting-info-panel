@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Graph;
 using Microsoft.Identity.Web;
 using TeamsMeetingServiceCall.controller;
@@ -9,23 +8,28 @@ namespace TeamsMeetingServiceCall.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GraphController : ControllerBase
+    public class CustomerController : ControllerBase
     {
         private readonly GraphServiceClient _graphClient;
-        private readonly ITokenAcquisition _tokenAcquisition;
+        private readonly ITokenAcquisition _tokenAcquisition; 
         private readonly ILogger<GraphController> _logger;
-        public GraphController(ITokenAcquisition tokenAcquisition, GraphServiceClient graphClient, ILogger<GraphController> logger)
+        public CustomerController(ITokenAcquisition tokenAcquisition, GraphServiceClient graphClient, ILogger<GraphController> logger)
         {
-            _tokenAcquisition = tokenAcquisition;
-            _graphClient = graphClient;
+            //_tokenAcquisition = tokenAcquisition;
+            //_graphClient = graphClient;
             _logger = logger;
         }
-        
-        public async Task<CustomerData> Get(string plainChatId)
-        {            
-            CustomerData result = await this.GetCustomMeetingData(plainChatId);
-            return result;
+        [HttpGet]
+        public async Task<ActionResult<string>> Get(string meetingId)
+        {
+            _logger.LogInformation($"MeetingID: {meetingId}");
+            string chatId = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(meetingId));
+            _logger.LogInformation($"MeetingID decoded: {chatId.Replace("0#", "").Replace("#0", "")}");
+            string plainChatId = chatId.Replace("0#", "").Replace("#0", "");            
+            CustomerData result = await this.GetCustomMeetingDataDB(plainChatId);
+            return Ok(result);
         }
+
         private async Task<CustomerData> GetCustomMeetingData(string meetingId)
         {
             AzureController azrCtrl = new AzureController("Endpoint=https://mmoteamsconfiguration.azconfig.io;Id=/nk1-l9-s0:JJRg85Y6Y+GzQ1rRLdzf;Secret=wX+jBL/p0WwB/3Z8SGVP8rMsQ8t1DcZC+te5wK84nuw="); // ToDo!!         
@@ -47,7 +51,7 @@ namespace TeamsMeetingServiceCall.Controllers
         private async Task<CustomerData> GetCustomMeetingDataDB(string meetingId)
         {
             AzureTableController azureTableController = new AzureTableController();
-            CustomerData customerData = azureTableController.GetCustomer(meetingId);            
+            CustomerData customerData = azureTableController.GetCustomer(meetingId);
             return customerData;
         }
     }

@@ -5,10 +5,10 @@
     "provisionParameters": {
       "value": {
         "resourceBaseName": "teamsmeetib67199",
-        "m365ClientId": "{{state.aad-app.clientId}}",
-        "m365ClientSecret": "{{state.aad-app.clientSecret}}",
-        "m365TenantId": "{{state.aad-app.tenantId}}",
-        "m365OauthAuthorityHost": "{{state.aad-app.oauthHost}}"
+        "m365ClientId": "${{AAD_APP_CLIENT_ID}}",
+        "m365ClientSecret": "${{SECRET_AAD_APP_CLIENT_SECRET}}",
+        "m365TenantId": "${{AAD_APP_TENANT_ID}}",
+        "m365OauthAuthorityHost": "${{AAD_APP_OAUTH_AUTHORITY_HOST}}"
       }
     }
   }

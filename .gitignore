@@ -13,3 +13,6 @@ obj
 appsettings.Development.json
 .vs
 publish
+/TeamsMeetingServiceCall/env/.env.dev
+/TeamsMeetingServiceCall/Properties/PublishProfiles
+/TeamsMeetingServiceCall/Properties/ServiceDependencies/mmoTabMeetingCreateData - Web Deploy
