@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Graph;
-using Microsoft.Identity.Web;
+using Microsoft.Graph.ExternalConnectors;
 using TeamsMeetingServiceCall.controller;
 using TeamsMeetingServiceCall.Models;
 
@@ -9,15 +8,13 @@ namespace TeamsMeetingServiceCall.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
-    {
-        private readonly GraphServiceClient _graphClient;
-        private readonly ITokenAcquisition _tokenAcquisition; 
-        private readonly ILogger<GraphController> _logger;
-        public CustomerController(ITokenAcquisition tokenAcquisition, GraphServiceClient graphClient, ILogger<GraphController> logger)
-        {
-            //_tokenAcquisition = tokenAcquisition;
-            //_graphClient = graphClient;
+    {        
+        private readonly ILogger<CustomerController> _logger;
+        private IConfiguration _config;
+        public CustomerController(IConfiguration config, ILogger<CustomerController> logger)
+        {            
             _logger = logger;
+            _config = config;
         }
         [HttpGet]
         public async Task<ActionResult<string>> Get(string meetingId)
@@ -50,7 +47,7 @@ namespace TeamsMeetingServiceCall.Controllers
 
         private async Task<CustomerData> GetCustomMeetingDataDB(string meetingId)
         {
-            AzureTableController azureTableController = new AzureTableController();
+            AzureTableController azureTableController = new AzureTableController(_config);
             CustomerData customerData = azureTableController.GetCustomer(meetingId);
             return customerData;
         }

@@ -19,7 +19,7 @@ string userPrincipalName = "markus@mmoellermvp.onmicrosoft.com";
 string dummyAttendee = "cclausen@mmoellermvp.onmicrosoft.com";
 
 string customerName = "Contoso";
-string customerEmail = "BenBenson@contoso.com";
+string customerEmail = "JohnJohnson@contoso.com";
 string customerPhone = "+491515445556";
 string customerId = "47110815";
 
@@ -66,6 +66,6 @@ azrCtrl.storeConfigValue($"TEAMSMEETINGSERVICECALL:{chatId}:CUSTOMERPHONE", cust
 azrCtrl.storeConfigValue($"TEAMSMEETINGSERVICECALL:{chatId}:CUSTOMEREMAIL", customerEmail);
 azrCtrl.storeConfigValue($"TEAMSMEETINGSERVICECALL:{chatId}:CUSTOMERID", customerId);
 
-AzureTableController azureTableController = new AzureTableController();
+AzureTableController azureTableController = new AzureTableController(config);
 azureTableController.CreateCustomer(chatId, customer);
 Console.ReadLine();

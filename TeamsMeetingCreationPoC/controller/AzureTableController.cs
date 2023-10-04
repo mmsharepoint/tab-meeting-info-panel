@@ -1,5 +1,6 @@
 ﻿using Azure;
 using Azure.Data.Tables;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace TeamsMeetingCreationPoC.controller
   {
     private TableServiceClient dataClient;
     private TableClient tableClient;
-    public AzureTableController() {
-      string accountName = "mmotabmeetingcreatedata";
-      string storageAccountKey = "ooevBshh+lya2yjudRz0nYfQcuqAPlr+60qxCjE32ln/MsELfFBGwg47Sa8KrYZCcvcmXeGryVZa+AStO1nhyA==";
+    public AzureTableController(IConfiguration config) {
+      string accountName = config["AZURE_TABLE_ACCOUNTNAME"];
+        string storageAccountKey = config["AZURE_TABLE_KEY"];
       string storageUrl = $"https://{accountName}.table.core.windows.net/";
       dataClient = new TableServiceClient(new Uri(storageUrl), new TableSharedKeyCredential(accountName, storageAccountKey));
 

@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\GraphController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Components\Graph.razor" />
     <Content Remove="Components\ProfileCard.razor" />
   </ItemGroup>
