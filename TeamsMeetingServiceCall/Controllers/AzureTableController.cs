@@ -6,21 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TeamsMeetingServiceCall.Models;
-//using TeamsMeetingCreationPoC.Model;
 
 namespace TeamsMeetingServiceCall.Controllers
 {
   internal class AzureTableController
   {
-    private TableServiceClient dataClient;
     private TableClient tableClient;
     public AzureTableController(IConfiguration config) {
         string accountName = config["AZURE_TABLE_ACCOUNTNAME"];
         string storageAccountKey = config["AZURE_TABLE_KEY"];
         string storageUrl = $"https://{accountName}.table.core.windows.net/";
-      dataClient = new TableServiceClient(new Uri(storageUrl), new TableSharedKeyCredential(accountName, storageAccountKey));
-
-      tableClient = new TableClient(new Uri(storageUrl), "Customer", new TableSharedKeyCredential(accountName, storageAccountKey));
+        tableClient = new TableClient(new Uri(storageUrl), "Customer", new TableSharedKeyCredential(accountName, storageAccountKey));
     }
 
     public CustomerData GetCustomer(string meetingID)

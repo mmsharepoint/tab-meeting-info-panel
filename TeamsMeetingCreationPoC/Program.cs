@@ -8,15 +8,17 @@ using TeamsMeetingCreationPoC.controller;
 using System.Net.Http.Headers;
 using TeamsMeetingCreationPoC.Model;
 
+var environmentName = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
+
 var builder = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json");
+    .AddJsonFile($"appsettings.{environmentName}.json");
 var config = builder.Build();
 
 string clientId = config["AZURE_CLIENT_ID"];
 string tenantId = config["AZURE_TENANT_ID"];
 string clientSecret = config["AZURE_CLIENT_SECRET"];
-string userPrincipalName = "markus@mmoellermvp.onmicrosoft.com";
-string dummyAttendee = "cclausen@mmoellermvp.onmicrosoft.com";
+string userPrincipalName = config["MEETING_OWNER"];
+string dummyAttendee = config["MEETING_ATTENDEE"];
 
 string customerName = "Contoso";
 string customerEmail = "JohnJohnson@contoso.com";
@@ -33,22 +35,11 @@ Customer customer = new Customer()
 
 GraphController graphController = new GraphController(tenantId, clientId, clientSecret);
 
-string meetingSubject = "Test Meeting with App/Tab 5";
-//OnlineMeeting om = new OnlineMeeting
-//{
-//    Subject = meetingSubject,
-//    StartDateTime = DateTime.Now,
-//    EndDateTime = DateTime.Now.AddHours(1)
-//};
+string meetingSubject = "Test Meeting with App / Tab 6";
+
 string userID = await graphController.GetUserId(userPrincipalName);
 string joinUrl = await graphController.CreateTeamsMeeting(userID, userPrincipalName, dummyAttendee, meetingSubject);
 
-// string joinUrl = "https://teams.microsoft.com/l/meetup-join/19%3ameeting_NTFhNDc2NjktMmJkMi00ZGMxLWJkNDYtNDNiZWQ3YTI2NGRh%40thread.v2/0?context=%7b%22Tid%22%3a%227e77d071-ed08-468a-bc75-e8254ba77a21%22%2c%22Oid%22%3a%226c76948a-7520-4c33-bf37-b1a39b78859f%22%7d";
-// !!! https://learn.microsoft.com/en-us/graph/cloud-communication-online-meeting-application-access-policy
-
-// HttpClientController clientController = new HttpClientController(accessToken);
-// string onlineMeetingResult = await clientController.GetOnlineMeeting(userID, joinUrl);
-// Console.WriteLine($"OnlineMeeting /n {onlineMeetingResult}");
 string chatId = await graphController.GetMeetingChatId(userID, joinUrl);
 
 string appId = await graphController.GetAppId();

@@ -48,7 +48,6 @@ namespace TeamsMeetingCreationPoC.controller
                 accessToken = clientSecretCredential.GetTokenAsync(tokenRequestContext).Result.Token;
                 graphClient = new GraphServiceClient(clientSecretCredential, scopes);
             }
-            Console.WriteLine($"Access Token {accessToken}");
         }
 
         public async Task<string> CreateTeamsMeeting(string userId, string userPrincipalName, string dummyAttendee, string meetingSubject)

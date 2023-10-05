@@ -16,3 +16,4 @@ publish
 /TeamsMeetingServiceCall/env/.env.dev
 /TeamsMeetingServiceCall/Properties/PublishProfiles
 /TeamsMeetingServiceCall/Properties/ServiceDependencies/mmoTabMeetingCreateData - Web Deploy
+/TeamsMeetingCreationPoC/appsettings.Development.json

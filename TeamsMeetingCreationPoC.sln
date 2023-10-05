@@ -8,9 +8,18 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DEF0168C-61F6-4145-814B-792E3A4F80D6}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		assets\01HighlevelArc_CreateMeeting.png = assets\01HighlevelArc_CreateMeeting.png
+		assets\02InMeetingSidePanel.png = assets\02InMeetingSidePanel.png
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsMeetingServiceCall", "TeamsMeetingServiceCall\TeamsMeetingServiceCall.csproj", "{37D215B1-47B9-4301-AB8C-53E085DFBC45}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{AB68286C-AD4C-4813-BFCC-C05F8F447BBB}"
+	ProjectSection(SolutionItems) = preProject
+		assets\01HighlevelArc_CreateMeeting.png = assets\01HighlevelArc_CreateMeeting.png
+		assets\02InMeetingSidePanel.png = assets\02InMeetingSidePanel.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
