@@ -13,14 +13,14 @@ In meeting side-panel display
 
 ![In meeting side-panel display...](assets/02InMeetingSidePanel.png)
 
-For further details see the author's [blog post]()
+For further details see the author's [blog post](https://mmsharepoint.wordpress.com/2023/10/06/creating-teams-meetings-and-install-teams-meeting-app-with-microsoft-graph/)
 
 ## Tools and Frameworks
 
 ![drop](https://img.shields.io/badge/Teams&nbsp;Toolkit&nbsp;for&nbsp;VS&nbsp;Code-17.7-green.svg)
 
 
-![drop](https://img.shields.io/badge/Visual&nbsp;Studiot&nbsp;2022&nbsp;Community&nbsp;Edition-17.7-green.svg)
+![drop](https://img.shields.io/badge/Visual&nbsp;Studio&nbsp;2022&nbsp;Community&nbsp;Edition-17.7-green.svg)
 
 
 ## Prerequisites
@@ -37,7 +37,7 @@ This sample was created [using the Teams Toolkit with Visual Studio 2022](https:
 
 Version|Date|Author|Comments
 -------|----|--------|--------
-1.0|Oct xx, 2023|[Markus Moeller](http://www.twitter.com/moeller2_0)|Initial release
+1.0|Oct 06, 2023|[Markus Moeller](http://www.twitter.com/moeller2_0)|Initial release
 
 ## Disclaimer
 
@@ -55,10 +55,11 @@ Version|Date|Author|Comments
   - with redirect uri https://localhost/blank-auth-end.html
   - SignInAudience multi-tenant
   - with client secret
-  - with **delegated** Graph permission User.Read (not necessary)
+  - with **delegated** Graph permissions AppCatalog.Read.All, Calendars.ReadWrite, TeamsAppInstallation.ReadWrite, Chat.ReadBasic OnlineMeetings.ReadWrite, TeamsTab.ReadWriteForChat
+    - if you prefer app context created with **app,ication** Graph permissions AppCatalog.Read.All, Calendars.ReadWrite, TeamsAppInstallation.ReadWrite, OnlineMeetings.ReadWrite.All, TeamsTab.ReadWriteForChat.All
   - With exposed Api "access_as_user" and App ID Uri api://localhost/<App ID>
   - With the client IDs for Teams App and Teams Web App 1fec8e78-bce4-4aaf-ab1b-5451cc387264 and 5e3ce6c0-2b1f-4285-8d4b-75ee78787346
-- Check for a Debug Environment Variable "DOTNET_ENVIRONMENT" (="Devolment"?) and either use appsettings.json or appsettings.Development.json in TeamsMeetingCreationPoC
+- Check for a Debug Environment Variable "DOTNET_ENVIRONMENT" (="Development"?) and either use appsettings.json or appsettings.Development.json in TeamsMeetingCreationPoC
 - Create an Azure App Configuration and put configuration string ....-. and/or
 - Create an Azure Data Table and put account name and to appsettings.json of TeamsMeetingCreationPoC and TeamsMeetingServiceCall
 - Add 2 Emails/UPNs from your tenant to your appsettings.json (or a appsettings.Development.json) of TeamsMeetingCreationPoC

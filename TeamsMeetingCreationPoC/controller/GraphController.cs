@@ -14,7 +14,7 @@ namespace TeamsMeetingCreationPoC.controller
 {
     internal class GraphController
     {
-        private bool userScope = false; // true=Delegated, false=app
+        private bool userScope = true; // true=Delegated, false=app
         private string[] scopes = new[] { "https://graph.microsoft.com/.default" };
         private GraphServiceClient graphClient;
         

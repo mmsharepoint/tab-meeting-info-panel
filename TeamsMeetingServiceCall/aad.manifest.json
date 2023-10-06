@@ -18,13 +18,33 @@
     },
     "requiredResourceAccess": [
         {
-            "resourceAppId": "Microsoft Graph",
-            "resourceAccess": [
-                {
-                    "id": "User.Read",
-                    "type": "Scope"
-                }
-            ]
+          "resourceAppId": "Microsoft Graph",
+          "resourceAccess": [
+            {
+              "id": "AppCatalog.Read.All",
+              "type": "Scope"
+            },
+            {
+              "id": "Calendars.ReadWrite",
+              "type": "Scope"
+            },
+            {
+              "id": "TeamsAppInstallation.ReadWrite",
+              "type": "Scope"
+            },
+            {
+              "id": "OnlineMeetings.ReadWrite",
+              "type": "Scope"
+            },
+            {
+              "id": "TeamsTab.ReadWriteForChat",
+              "type": "Scope"
+            },
+            {
+              "id": "Chat.ReadBasic",
+              "type": "Scope"
+            }
+          ]
         }
     ],
     "oauth2Permissions": [
