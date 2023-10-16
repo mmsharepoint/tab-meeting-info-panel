@@ -1,15 +1,20 @@
-﻿@*@using Microsoft.Extensions.Configuration
-@using Microsoft.AspNetCore.Hosting
-@using Microsoft.Extensions.Hosting
+﻿﻿@using Azure.Core;
+@using Microsoft.Extensions.Configuration;
+@using Microsoft.AspNetCore.Hosting;
+@using Microsoft.Extensions.Hosting;
+@using System.Net.Http.Headers;
+@using System.Text;
+@using System.Text.Json;
+@using System.Text.Encodings;
 @inject TeamsFx teamsfx
+@inject MicrosoftTeams MicrosoftTeams
 @inject TeamsUserCredential teamsUserCredential
 @inject IWebHostEnvironment HostEnvironment
 @inject IConfiguration Configuration
-@inject NavigationManager MyNavigationManager*@
+@inject IHttpClientFactory ClientFactory
+@inject NavigationManager MyNavigationManager
 @using TeamsMeetingServiceCall.Controllers;
 @using TeamsMeetingServiceCall.Models;
-@using System.Text;
-@inject MicrosoftTeams MicrosoftTeams
 
 <div class="welcome page">
   <div class="narrow page-padding">
@@ -21,7 +26,7 @@
           <label>Name</label>
         </div>      
         <div class="gridCell9">
-          <label id="customerName" class="infoData"></label>
+          <label id="customerName" class="infoData">@customer.Name</label>
         </div>
       </div>
       <div class="gridRow">
@@ -29,7 +34,7 @@
           <label>Phone</label>
         </div>
         <div class="gridCell9">
-          <label id="customerPhone" class="infoData"></label>
+          <label id="customerPhone" class="infoData">@customer.Phone</label>
         </div>
       </div>
       <div class="gridRow">
@@ -37,7 +42,7 @@
           <label>Email</label>
         </div>
         <div class="gridCell9">
-          <label id="customerEmail" class="infoData"></label>
+          <label id="customerEmail" class="infoData">@customer.Email</label>
         </div>
       </div>
       <div class="gridRow">
@@ -45,7 +50,7 @@
           <label>ID</label>
         </div>
         <div class="gridCell9">
-          <label id="customerID" class="infoData"></label>
+          <label id="customerID" class="infoData">@customer.Id</label>
         </div>
       </div>
     </div>
@@ -54,62 +59,49 @@
 </div>
 
 @code {
-    string customerName;
-    string customerEmail;
+    CustomerData customer = new CustomerData
+      {
+          Name = "",
+          Email = "",
+          Phone = "",
+          Id = ""
+    };
     bool isInTeams;
+    string meetingID = String.Empty;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        // if (firstRender)
-        // {
-        //     isInTeams = await MicrosoftTeams.IsInTeams();
-        // }
-        // if (isInTeams)
-        // {
-        //     await MicrosoftTeams.InitializeAsync();
-        //     var context = await MicrosoftTeams.GetTeamsContextAsync();
-        //     string encodedMeetingID = context.MeetingId;
-        //     byte[] decodedBytes = Convert.FromBase64String(encodedMeetingID);
-        //     string meetingID = Encoding.UTF8.GetString(decodedBytes).Replace("0#", "").Replace("#0", "");
-        //     AzureTableController azureTableController = new AzureTableController();
-        //     CustomerData customer = azureTableController.GetCustomer(meetingID);
-        //     customerName = customer.Name;
-        //     customerEmail = customerEmail;
-        // }
-    }
-}
-@*@code {
-    string userName;
-    string errorMessage;
-    bool isInTeams;
-    bool isLoading = true; 
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await base.OnAfterRenderAsync(firstRender);
-
-        if(firstRender)
+        if (firstRender)
         {
+            await MicrosoftTeams.InitializeAsync();
             isInTeams = await MicrosoftTeams.IsInTeams();
-
+            var context = await MicrosoftTeams.GetTeamsContextAsync();
+            meetingID = context.Meeting.Id;
             if (isInTeams)
-            { 
-               var user = await teamsUserCredential.GetUserInfoAsync();
-               userName = user.DisplayName;
-            }
-            else
             {
-                errorMessage = "Not running in Microsoft Teams.";
-            }
+                var result = await teamsUserCredential.GetTokenAsync(new TokenRequestContext(new string[] { }), new System.Threading.CancellationToken());
+                string token = result.Token;
+                var request = new HttpRequestMessage(HttpMethod.Get,
+                        $"/api/Customer?meetingId={meetingID}");
 
-            StateHasChanged();            
+                request.Headers.Add("Accept", "application/json");
+                request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+
+                var client = ClientFactory.CreateClient();
+                client.BaseAddress = new Uri(MyNavigationManager.BaseUri);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var response = await client.SendAsync(request);
+                var contents = await response.Content.ReadAsStringAsync();
+                var customerJson = JsonSerializer.Deserialize<CustomerResult>(contents);
+                customer.Name = customerJson.name;
+                customer.Phone = customerJson.phone;
+                customer.Email = customerJson.email;
+                customer.Id = customerJson.id;
+                StateHasChanged();
+            }
         }
     }
+}
 
-    private string GetEnvironmentName()
-    {
-        return HostEnvironment.IsDevelopment() ? "local environment" : "Azure environment";
-    }
-}*@
 

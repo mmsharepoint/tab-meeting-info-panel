@@ -55,8 +55,8 @@ Version|Date|Author|Comments
   - with redirect uri https://localhost/blank-auth-end.html
   - SignInAudience multi-tenant
   - with client secret
-  - with **delegated** Graph permissions AppCatalog.Read.All, Calendars.ReadWrite, TeamsAppInstallation.ReadWrite, Chat.ReadBasic OnlineMeetings.ReadWrite, TeamsTab.ReadWriteForChat
-    - if you prefer app context created with **app,ication** Graph permissions AppCatalog.Read.All, Calendars.ReadWrite, TeamsAppInstallation.ReadWrite, OnlineMeetings.ReadWrite.All, TeamsTab.ReadWriteForChat.All
+  - with **delegated** Graph permissions AppCatalog.Read.All, Calendars.ReadWrite, TeamsAppInstallation.ReadWrite, Chat.ReadBasic OnlineMeetings.ReadW, TeamsTab.ReadWriteForChat
+    - if you prefer app context created with **application** Graph permissions AppCatalog.Read.All, Calendars.ReadWrite, TeamsAppInstallation.ReadWrite, OnlineMeetings.Read.All, TeamsTab.ReadWriteForChat.All
   - With exposed Api "access_as_user" and App ID Uri api://localhost/<App ID>
   - With the client IDs for Teams App and Teams Web App 1fec8e78-bce4-4aaf-ab1b-5451cc387264 and 5e3ce6c0-2b1f-4285-8d4b-75ee78787346
 - Check for a Debug Environment Variable "DOTNET_ENVIRONMENT" (="Development"?) and either use appsettings.json or appsettings.Development.json in TeamsMeetingCreationPoC

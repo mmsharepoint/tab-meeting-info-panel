@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Graph.ExternalConnectors;
 using TeamsMeetingServiceCall.controller;
 using TeamsMeetingServiceCall.Models;
 

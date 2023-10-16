@@ -50,8 +50,8 @@
     "validDomains": [
         "${{PROVISIONOUTPUT__AZUREWEBAPPTABOUTPUT__DOMAIN}}"
     ],
-    "webApplicationInfo": {
-        "id": "${{AAD_APP_CLIENT_ID}}",
-        "resource": "api://${{PROVISIONOUTPUT__AZUREWEBAPPTABOUTPUT__DOMAIN}}/${{AAD_APP_CLIENT_ID}}"
-    }
+  "webApplicationInfo": {
+    "id": "${{AAD_APP_CLIENT_ID}}",
+    "resource": "${{STATE__FX_RESOURCE_AAD_APP_FOR_TEAMS__APPLICATIONIDURIS}}"
+  }
 }

@@ -111,6 +111,15 @@ public class TeamsContext
     public string MeetingId { get; set; }
 
     /// <summary>
+    /// Fix for TeamsJS SDK v2.0
+    /// </summary>
+    public MeetingInfo Meeting { get; set; }
+
+    public class MeetingInfo
+    {
+        public string Id { get; set; }
+    }
+    /// <summary>
     /// More detailed locale info from the user's OS if available. Can be used together with the @microsoft/globe NPM
     /// package to ensure your app respects the user's OS date and time format configuration.
     /// </summary>
